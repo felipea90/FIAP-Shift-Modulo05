@@ -8,17 +8,17 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="well">
-                <h2>Cliente - Cadastrar</h2>
+                <h1 class="bg-dark p-5 mb-3 text-light text-center"><strong>Cliente - Cadastrar</strong></h1>
 
                 <form action="/Cliente/Cadastrar" method="post">
 
                     <div class="form-group">
                         <label class="control-label">Nome:</label>
-                        <input class="form-control col-5" type="text" name="nome" />
+                        <input class="form-control col-5" type="text" name="nome" placeholder="Ex: Fulano de Tal"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email:</label>
-                        <input class="form-control col-5" type="email" name="email" />
+                        <input class="form-control col-5" type="email" name="email" placeholder="Ex: email@email.com"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Nascimento:</label>
@@ -26,13 +26,13 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Observação:</label>
-                        <textarea name="observacao" class="form-control" rows="4" cols="100"></textarea>
+                        <textarea name="observacao" class="form-control" rows="4" cols="100" placeholder="Ex: Dados extras"></textarea>
                     </div>
 
 
-                    <a href="#" class="btn btn-default btn-lg">Cancelar</a>
+                    <a href="/Cliente/Index" class="btn btn-outline-danger btn-lg">Cancelar</a>
                     
-                    <button type="submit" class="btn btn-primary btn-lg">Gravar</button>
+                    <button type="submit" class="btn btn-outline-primary btn-lg">Gravar</button>
                 </form>
             </div>
         </div>

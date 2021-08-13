@@ -44,7 +44,7 @@ namespace Fiap.Web.AspNet.Controllers
 
         public IActionResult Cadastrar(ClienteModel model)
         {
-            TempData["mensagemSucesso"] = $"Cliente {model.Nome} Cadastrado com sucesso!";
+            TempData["mensagemSucesso"] = $"Cliente {model.Nome} cadastrado com sucesso!";
 
             return RedirectToAction("Index");
         }
