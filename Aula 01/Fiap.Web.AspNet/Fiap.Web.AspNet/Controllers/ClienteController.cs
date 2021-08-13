@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Fiap.Web.AspNet.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,27 +11,47 @@ namespace Fiap.Web.AspNet.Controllers
     {
         public IActionResult Index()
         {
+            Console.WriteLine("validando o acesso ao controller Home e ação Index");
             return View();
         }
 
-        public IActionResult Index2()
+        public IActionResult Novo()
         {
-            return View("Index2");
+            return View();
         }
 
-        public IActionResult Content()
-        {
-            return Content("Teste de Content");
-        }
+        //public IActionResult Cadastrar(ClienteModel model)
+        //{
+        //    Console.WriteLine("Validando o acesso ao Controller Cliente e ação Cadastrar");
+        //    Console.WriteLine(model);
 
-        public IActionResult Redirect()
+        //    Console.WriteLine("Gravando no Banco de Dados e Recuperando o ID");
+
+        //    model.ClienteId = 199; //fake
+
+        //    ViewData["ClienteId"] = model.ClienteId;
+        //    ViewBag.NomeCliente = model.Nome;
+
+        //    ViewData["ClienteModel"] = model;
+        //    ViewBag.ClienteModel = model;
+
+        //    TempData["ClienteModel"] = model;
+
+        //    //return RedirectToAction("Index");
+
+        //    return View();
+        //}
+
+        public IActionResult Cadastrar(ClienteModel model)
         {
+            TempData["mensagemSucesso"] = $"Cliente {model.Nome} Cadastrado com sucesso!";
+
             return RedirectToAction("Index");
         }
 
-        public IActionResult RedirectToRoute()
+        public IActionResult Cadastrar2()
         {
-            return RedirectToRoute( new { controller = "home", action = "index"} );
+            return View();
         }
     }
 }

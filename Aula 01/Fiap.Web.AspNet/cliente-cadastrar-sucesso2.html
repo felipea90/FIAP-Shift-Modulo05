@@ -1,20 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
 
             <h1>Clientes</h1>
-
-            <h3>@TempData["mensagemSucesso"]</h3>
-
             <p class="toolbar">
-                <a class="create btn btn-default" href="/Cliente/Novo">Novo Cliente</a>
+                <a class="create btn btn-default" href="cliente-cadastrar.html">Novo Cliente</a>
             </p>
+
+            <div class="alert alert-sucess" role="alert">
+                <h4>Cliente Antonio cadastrado com sucesso !</h4>
+            </div>
 
             <table class="table table-striped" border="1" cellspacing="0" cellpadding="0">
                 <thead>
@@ -46,6 +41,15 @@
                     <tr>
                         <td>#3</td>
                         <td>Moreni</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="#">Detalhes</a>
+                            <a class="btn btn-warning btn-sm" href="#">Editar</a>
+                            <a class="btn btn-danger btn-sm" href="#">Excluir</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>Antonio</td>
                         <td>
                             <a class="btn btn-success btn-sm" href="#">Detalhes</a>
                             <a class="btn btn-warning btn-sm" href="#">Editar</a>
