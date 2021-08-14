@@ -1,23 +1,51 @@
 ﻿using Fiap.Web.AspNet.Models;
+using Fiap.Web.AspNet.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fiap.Web.AspNet.Controllers
 {
     public class ClienteController : Controller
     {
+        private readonly ClienteRepository clienteRepository;
+        private readonly RepresentanteRepository representanteRepository;
+
+        public ClienteController()
+        {
+            clienteRepository = new ClienteRepository();
+            representanteRepository = new RepresentanteRepository();
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             Console.WriteLine("validando o acesso ao controller Home e ação Index");
-            return View();
+
+            IList<ClienteModel> clientes = clienteRepository.FindAll();
+
+            return View(clientes);
         }
 
+        [HttpGet]
         public IActionResult Novo()
         {
-            return View();
+            IList<RepresentanteModel> representantes = representanteRepository.FindAll();
+
+            ViewBag.Representantes = new SelectList(representantes, "RepresentanteId", "NomeRepresentante");
+
+            return View(new ClienteModel());
+        }
+
+        [HttpPost]
+        public IActionResult Novo(ClienteModel model)
+        {
+           clienteRepository.Insert(model);
+
+            TempData["mensagemSucesso"] = $"Cliente {model.Nome} CADASTRADO com sucesso!";
+
+            return RedirectToAction("Index");
         }
 
         //public IActionResult Cadastrar(ClienteModel model)
@@ -42,16 +70,46 @@ namespace Fiap.Web.AspNet.Controllers
         //    return View();
         //}
 
-        public IActionResult Cadastrar(ClienteModel model)
+        [HttpGet]
+        public IActionResult Detalhe(int id)
         {
-            TempData["mensagemSucesso"] = $"Cliente {model.Nome} cadastrado com sucesso!";
+            ClienteModel clienteModel = clienteRepository.FindById(id);
+
+            return View(clienteModel);
+        }
+
+        [HttpGet]
+        public IActionResult Alterar(int id)
+        {
+            IList<RepresentanteModel> representantes = representanteRepository.FindAll();
+
+            // ViewBag.Representantes = representantes;
+            ViewBag.Representantes = new SelectList(representantes, "RepresentanteId", "NomeRepresentante");
+
+            ClienteModel clienteModel = clienteRepository.FindById(id);
+
+            return View(clienteModel);
+        }
+
+        //Capturando os dados, gravando no banco e exibindo a mensagem de sucesso.
+        [HttpPost]
+        public IActionResult Alterar(ClienteModel model)
+        {
+            clienteRepository.Update(model);
+
+            TempData["mensagemSucesso"] = $"Cliente {model.Nome} ALTERADO com sucesso!";
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Cadastrar2()
+        [HttpGet]
+        public IActionResult Excluir(int id)
         {
-            return View();
+            clienteRepository.Delete(id);
+
+            TempData["mensagemSucesso"] = $"Cliente REMOVIDO com sucesso!";
+
+            return RedirectToAction("Index");
         }
     }
 }
