@@ -75,6 +75,10 @@ namespace Fiap.Web.AspNet.Controllers
         {
             ClienteModel clienteModel = clienteRepository.FindById(id);
 
+            RepresentanteModel representanteModel = representanteRepository.FindById(clienteModel.RepresentanteId);
+
+            ViewBag.Representantes = representanteModel.NomeRepresentante;
+
             return View(clienteModel);
         }
 
