@@ -1,0 +1,61 @@
+﻿@model Fiap.Web.AspNet.Models.ClienteModel
+
+<!DOCTYPE html>
+
+<div>
+    <h1 class="bg-dark p-5 mb-3 text-light text-center">Detalhes - Cliente</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.ClienteId)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.ClienteId)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.RepresentanteId)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.RepresentanteId)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            Nome do Representante
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.Representante.NomeRepresentante)
+        </dd>
+        <dt class="col-sm-2 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd class="col-sm-4 form-control">
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <div class="row justify-content-end">
+            @Html.ActionLink("Editar", "Alterar", new { id = Model.ClienteId }, new { @class = "btn btn-outline-warning" })
+        <div>
+            <a class="btn btn-outline-primary ml-3" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</div>

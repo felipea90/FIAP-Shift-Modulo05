@@ -1,0 +1,22 @@
+﻿@model ClienteModel
+
+<tr>
+    <td>@Model.ClienteId</td>
+    <td>@Model.Nome</td>
+    <td class="row border-0">
+        <a class="btn btn-outline-primary mr-1 btn-sm ml-2"
+           asp-controller="Cliente"
+           asp-action="Detalhe"
+           asp-route-id="@Model.ClienteId">Detalhes</a>
+
+        <a class="btn btn-outline-warning mr-1 btn-sm"
+           asp-controller="Cliente"
+           asp-action="Alterar"
+           asp-route-id="@Model.ClienteId">Editar</a>
+
+        <a class="btn btn-outline-danger btn-sm"
+           asp-controller="Cliente"
+           asp-action="Excluir"
+           asp-route-id="@Model.ClienteId">Remover</a>
+    </td>
+</tr>

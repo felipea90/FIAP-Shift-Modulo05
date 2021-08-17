@@ -70,27 +70,16 @@ namespace Fiap.Web.AspNet.Controllers
         //    return View();
         //}
 
-        [HttpGet]
-        public IActionResult Detalhe(int id)
-        {
-            ClienteModel clienteModel = clienteRepository.FindById(id);
-
-            RepresentanteModel representanteModel = representanteRepository.FindById(clienteModel.RepresentanteId);
-
-            ViewBag.Representantes = representanteModel.NomeRepresentante;
-
-            return View(clienteModel);
-        }
 
         [HttpGet]
         public IActionResult Alterar(int id)
         {
             IList<RepresentanteModel> representantes = representanteRepository.FindAll();
 
-            // ViewBag.Representantes = representantes;
             ViewBag.Representantes = new SelectList(representantes, "RepresentanteId", "NomeRepresentante");
 
             ClienteModel clienteModel = clienteRepository.FindById(id);
+
 
             return View(clienteModel);
         }
@@ -114,6 +103,24 @@ namespace Fiap.Web.AspNet.Controllers
             TempData["mensagemSucesso"] = $"Cliente REMOVIDO com sucesso!";
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Detalhes(int id)
+        {
+            return View(clienteRepository.FindById(id));
+        }
+
+        [HttpGet]
+        public IActionResult Detalhe(int id)
+        {
+            var clienteModel = clienteRepository.FindById(id);
+
+            var representanteModel = representanteRepository.FindById(clienteModel.RepresentanteId);
+
+            clienteModel.Representante = representanteModel;
+
+            return View(clienteModel);
         }
     }
 }

@@ -34,23 +34,7 @@
                     <tbody>
                         @foreach (var cliente in Model)
                         {
-                            <tr>
-                                <td>@cliente.ClienteId</td>
-                                <td>@cliente.Nome</td>
-                                <td>
-                                    @Html.ActionLink("Detalhes", "Detalhe", "Cliente",
-                                                   new { id = cliente.ClienteId },
-                                                   new { @class = "btn btn-success btn-sm" })
-
-                                    @Html.ActionLink("Editar", "Alterar", "Cliente",
-                                                   new { id = cliente.ClienteId },
-                                                   new { @class = "btn btn-warning btn-sm" })
-
-                                    @Html.ActionLink("Excluir", "Excluir", "Cliente",
-                                                   new { id = cliente.ClienteId },
-                                                   new { @class = "btn btn-danger btn-sm" })
-                                </td>
-                            </tr>
+                            <partial name="_ClienteItem" model="cliente" />
                         }
                     </tbody>
                 </table>

@@ -40,6 +40,18 @@ namespace Fiap.Web.AspNet.Models
             RepresentanteId = representanteId;
         }
 
+        public ClienteModel(
+            int clienteId, 
+            string nome, 
+            string email, 
+            DateTime dataNascimento, 
+            string observacao, 
+            int representanteId, 
+            RepresentanteModel representante) : this(clienteId, nome, email, dataNascimento, observacao, representanteId)
+        {
+            Representante = representante;
+        }
+
         [Display(Name = "Id do Cliente:")]
         [HiddenInput]
         public int ClienteId { get; set; }
@@ -60,7 +72,6 @@ namespace Fiap.Web.AspNet.Models
         public string Observacao { get; set; }
 
         public int RepresentanteId { get; set; }
-
         public RepresentanteModel Representante { get; set; }
 
     }

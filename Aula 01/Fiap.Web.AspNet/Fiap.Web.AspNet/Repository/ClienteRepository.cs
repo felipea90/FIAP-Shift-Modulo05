@@ -16,10 +16,10 @@ namespace Fiap.Web.AspNet.Repository
             //context = new Context;
             listaClientes = new List<ClienteModel>
             {
-                new ClienteModel(1, "Flávio", "flavio@email.com", DateTime.Parse("1989-09-01"), "Observação 1", 4),
-                new ClienteModel(2, "Eduardo", "eduardo@email.com", DateTime.Parse("1993-12-01"), "Observação 2", 3),
-                new ClienteModel(3, "Moreni", "moreni@email.com",DateTime.Parse("1980-07-08"), "Observação 3", 2),
-                new ClienteModel(4, "João", "joao@email.com",DateTime.Parse("1988-02-12"), "Observação 4", 1)
+                new ClienteModel(1, "Flávio", "flavio@email.com", DateTime.Parse("1989-09-01"), "Observação 1", 4, new RepresentanteModel(4, "Felipe")),
+                new ClienteModel(2, "Eduardo", "eduardo@email.com", DateTime.Parse("1993-12-01"), "Observação 2", 3, new RepresentanteModel(3, "Felipe")),
+                new ClienteModel(3, "Moreni", "moreni@email.com",DateTime.Parse("1980-07-08"), "Observação 3", 2, new RepresentanteModel(2, "Felipe")),
+                new ClienteModel(4, "João", "joao@email.com",DateTime.Parse("1988-02-12"), "Observação 4", 1, new RepresentanteModel(1, "Felipe"))
             };
         }
 
