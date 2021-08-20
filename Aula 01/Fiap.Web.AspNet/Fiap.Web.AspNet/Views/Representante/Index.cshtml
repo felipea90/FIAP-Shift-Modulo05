@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RepresentanteModel>
+
+@{
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1 class="bg-dark p-5 mb-3 text-light text-center"><strong>Representante - Lista</strong></h1>
+
+            <p class="toolbar btn btn-outline-primary">
+                <a class="create btn btn-lg" href="/Representante/Novo"><strong>Novo Representante</strong></a>
+            </p>
+
+            @if (!string.IsNullOrEmpty((string)TempData["mensagemSucesso"]))
+            {
+                <div class="alert alert-warning" role="alert">
+                    <h5>@TempData["mensagemSucesso"]</h5>
+                </div>
+            }
+
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped text-center" border="1" cellspacing="0" cellpadding="0">
+                    <thead class="table-dark text-md-center">
+                        <tr>
+                            <th data-field="id">Id</th>
+                            <th data-field="name">Nome</th>
+                            <th class="actions" width="220">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var representante in Model)
+                        {
+                            <partial name="_RepresentanteItem" model="representante" />
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    <h1>Não existem Representantes cadastrados!</h1>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

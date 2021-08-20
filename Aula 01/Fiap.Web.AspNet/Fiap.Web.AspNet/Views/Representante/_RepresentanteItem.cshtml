@@ -1,0 +1,17 @@
+﻿@model RepresentanteModel
+
+<tr>
+    <td>@Model.RepresentanteId</td>
+    <td>@Model.NomeRepresentante</td>
+    <td class="row border-0 justify-content-center">
+        <a class="btn btn-outline-warning mr-1 btn-sm"
+           asp-controller="Representante"
+           asp-action="Alterar"
+           asp-route-id="@Model.RepresentanteId">Editar</a>
+
+        <a class="btn btn-outline-danger btn-sm"
+           asp-controller="Representante"
+           asp-action="Excluir"
+           asp-route-id="@Model.RepresentanteId">Remover</a>
+    </td>
+</tr>

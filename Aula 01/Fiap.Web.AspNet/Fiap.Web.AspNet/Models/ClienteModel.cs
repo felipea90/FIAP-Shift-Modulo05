@@ -52,25 +52,30 @@ namespace Fiap.Web.AspNet.Models
             Representante = representante;
         }
 
+        [Key]
         [Display(Name = "Id do Cliente:")]
         [HiddenInput]
         public int ClienteId { get; set; }
 
         [Display(Name = "Nome do Cliente:")]
+        [Required]
         public string Nome { get; set; }
 
         [Display(Name = "E-mail do Cliente:")]
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
         [Display(Name = "Data de Nascimento:")]
         [DataType(DataType.Date)]
+        [Required]
         public DateTime DataNascimento { get; set; }
 
         [Display(Name = "Observação:")]
         [DataType(DataType.MultilineText)]
         public string Observacao { get; set; }
 
+        [Required]
         public int RepresentanteId { get; set; }
         public RepresentanteModel Representante { get; set; }
 

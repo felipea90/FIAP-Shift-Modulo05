@@ -25,12 +25,12 @@ namespace Fiap.Web.AspNet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<DataContext>(options => 
+            //options.UseSqlServer(Configuration.GetConnectionString("databaseUrl")));
 
-            services.AddScoped<ClienteRepository>();
+            //services.AddScoped<ClienteRepository>();
 
-            services.AddScoped<RepresentanteRepository>();
+            //services.AddScoped<RepresentanteRepository>();
 
             services.AddControllersWithViews();
         }

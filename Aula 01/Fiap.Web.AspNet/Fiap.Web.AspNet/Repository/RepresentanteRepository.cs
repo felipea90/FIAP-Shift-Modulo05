@@ -1,43 +1,63 @@
-﻿using Fiap.Web.AspNet.Models;
+﻿using Fiap.Web.AspNet.Data;
+using Fiap.Web.AspNet.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fiap.Web.AspNet.Repository
 {
     public class RepresentanteRepository
     {
-        private readonly IList<RepresentanteModel> listaRepresentantes;
+        private readonly DataContext context;
 
         public RepresentanteRepository()
         {
-            listaRepresentantes = new List<RepresentanteModel>
-            {
-                new RepresentanteModel(1, "Ana"),
-                new RepresentanteModel(2, "Felipe"),
-                new RepresentanteModel(3, "Tassia"),
-                new RepresentanteModel(4, "Thiago")
-            };
+            context = new DataContext();
         }
 
         public IList<RepresentanteModel> FindAll()
         {
-            Console.WriteLine($"Representante repository - FindAll");
-            return listaRepresentantes;
+            var lista = context.Representantes.ToList();
+            return lista;
         }
 
         public RepresentanteModel FindById(int id)
         {
-            Console.WriteLine($"Representante repository - FindById Representante: {id}");
+            var representante = context.Representantes.Find(id);
 
-            if (id > listaRepresentantes.Count)
-            {
-                throw new Exception("Representante não encontrado");
-            }
-            else
-            {
-                return listaRepresentantes[id - 1];
-            }
-
+            return representante;
         }
+
+        public void Insert(RepresentanteModel representante)
+        {
+            context.Representantes.Add(representante);
+            context.SaveChanges();
+        }
+
+        public void Update(RepresentanteModel representante)
+        {
+            context.Representantes.Update(representante);
+            context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            context.Representantes.Remove(FindById(id));
+            context.SaveChanges();
+        }
+
+        //public void Delete(int id)
+        //{
+        //    RepresentanteModel representanteModel = new RepresentanteModel();
+        //    representanteModel.RepresentanteId = id;
+
+        //    Delete(representanteModel);
+        //}
+
+        //public void Delete(RepresentanteModel representanteModel)
+        //{
+        //    context.Representante.Remove(representanteModel);
+        //    context.SaveChanges();
+        //}
     }
 }

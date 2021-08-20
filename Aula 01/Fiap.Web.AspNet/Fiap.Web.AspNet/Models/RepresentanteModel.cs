@@ -1,10 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fiap.Web.AspNet.Models
 {
     public class RepresentanteModel
     {
+        [Key]
+        [Display(Name = "Id do Representante:")]
+        [HiddenInput]
         public int RepresentanteId { get; set; }
+
+        [Display(Name = "Nome do Representante:")]
+        [Required]
         public String NomeRepresentante { get; set; }
 
         public RepresentanteModel()

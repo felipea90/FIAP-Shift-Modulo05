@@ -1,65 +1,49 @@
-﻿using Fiap.Web.AspNet.Models;
+﻿using Fiap.Web.AspNet.Data;
+using Fiap.Web.AspNet.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fiap.Web.AspNet.Repository
 {
     public class ClienteRepository
     {
-        //private readonly Object context;
-        private readonly IList<ClienteModel> listaClientes;
+        private readonly DataContext context;
 
         public ClienteRepository()
         {
-            //listaClientes = new List<ClienteModel>();
-
-            //context = new Context;
-            listaClientes = new List<ClienteModel>
-            {
-                new ClienteModel(1, "Flávio", "flavio@email.com", DateTime.Parse("1989-09-01"), "Observação 1", 4, new RepresentanteModel(4, "Felipe")),
-                new ClienteModel(2, "Eduardo", "eduardo@email.com", DateTime.Parse("1993-12-01"), "Observação 2", 3, new RepresentanteModel(3, "Felipe")),
-                new ClienteModel(3, "Moreni", "moreni@email.com",DateTime.Parse("1980-07-08"), "Observação 3", 2, new RepresentanteModel(2, "Felipe")),
-                new ClienteModel(4, "João", "joao@email.com",DateTime.Parse("1988-02-12"), "Observação 4", 1, new RepresentanteModel(1, "Felipe"))
-            };
+            context = new DataContext();
         }
 
         public IList<ClienteModel> FindAll()
         {
-            Console.WriteLine($"Cliente repository - FindAll");
-            return listaClientes;
+            var lista = context.Clientes.ToList();
+            return lista;
         }
 
         public ClienteModel FindById(int id)
         {
-            Console.WriteLine($"Cliente repository - FindById Cliente: {id}");
+            var cliente = context.Clientes.Find(id);
 
-            if (id > listaClientes.Count)
-            {
-                throw new Exception("Cliente não encontrado");
-            }
-            else
-            {
-                return listaClientes[id - 1];
-            }
-
+            return cliente;
         }
 
-        public int Insert(ClienteModel clienteModel)
+        public void Insert(ClienteModel cliente)
         {
-            Console.WriteLine($"Cliente repository - Insert Cliente: {clienteModel.Nome}");
+            context.Clientes.Add(cliente);
+            context.SaveChanges();
+        }
 
-            listaClientes.Add(clienteModel);
-            return new Random().Next();
+        public void Update(ClienteModel cliente)
+        {
+            context.Clientes.Update(cliente);
+            context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            Console.WriteLine($"Cliente repository - Delete Id: {id}");
-        }
-
-        public void Update(ClienteModel clienteModel)
-        {
-            Console.WriteLine($"Cliente repository - Update Cliente: {clienteModel.Nome}");
+            context.Clientes.Remove(FindById(id));
+            context.SaveChanges();
         }
     }
 }
