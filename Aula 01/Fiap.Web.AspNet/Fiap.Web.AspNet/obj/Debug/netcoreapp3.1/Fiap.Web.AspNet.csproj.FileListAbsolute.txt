@@ -161,3 +161,4 @@ E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNe
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Representante\_RepresentanteItem.cshtml.g.cs
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Representante\Alterar.cshtml.g.cs
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Representante\Novo.cshtml.g.cs
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Representante\Detalhes.cshtml.g.cs

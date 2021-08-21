@@ -1,9 +1,12 @@
-﻿using Fiap.Web.AspNet.Models;
+﻿using Fiap.Web.AspNet.Data;
+using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fiap.Web.AspNet.Controllers
 {
@@ -11,11 +14,13 @@ namespace Fiap.Web.AspNet.Controllers
     {
         private readonly ClienteRepository clienteRepository;
         private readonly RepresentanteRepository representanteRepository;
+        private readonly DataContext context;
 
         public ClienteController()
         {
             clienteRepository = new ClienteRepository();
             representanteRepository = new RepresentanteRepository();
+            context = new DataContext();
         }
 
         [HttpGet]
@@ -107,7 +112,9 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Detalhes(int id)
         {
-            return View(clienteRepository.FindById(id));
+            var cliente = clienteRepository.FindById(id);
+
+            return View(cliente);
         }
 
         [HttpGet]

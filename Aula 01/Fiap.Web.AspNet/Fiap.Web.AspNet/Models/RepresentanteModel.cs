@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fiap.Web.AspNet.Models
@@ -15,6 +16,9 @@ namespace Fiap.Web.AspNet.Models
         [Required]
         public String NomeRepresentante { get; set; }
 
+        //Navigator Property
+        public ICollection<ClienteModel> Clientes { get; set; }
+
         public RepresentanteModel()
         { }
 
@@ -25,5 +29,6 @@ namespace Fiap.Web.AspNet.Models
             RepresentanteId = representanteId;
             NomeRepresentante = nomeRepresentante;
         }
+
     }
 }

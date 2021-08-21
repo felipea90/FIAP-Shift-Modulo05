@@ -22,8 +22,6 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            Console.WriteLine("validando o acesso ao controller Home e ação Index");
-
             IList<RepresentanteModel> representantes = representanteRepository.FindAll();
 
             return View(representantes);
@@ -71,6 +69,14 @@ namespace Fiap.Web.AspNet.Controllers
             TempData["mensagemSucesso"] = $"Representante REMOVIDO com sucesso!";
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Detalhes(int id)
+        {
+            var representante = representanteRepository.FindByIdWithClientes(id);
+
+            return View(representante);
         }
     }
 }

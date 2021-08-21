@@ -1,0 +1,52 @@
+﻿@model RepresentanteModel
+
+<div>
+    <h1 class="bg-dark p-5 mb-3 text-light text-center">Detalhes - Representante</h1>
+    
+    <form asp-controller="Representante" asp-action="Detalhes" method="get">
+
+        <div class="row">
+
+            <div class="form-group col-md-6 my-3">
+                <div class="font-weight-bold">Representante ID:</div>
+                <div class="border">@Model.RepresentanteId</div>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <div class="font-weight-bold">Nome do Representante:</div>
+                <div class="border">@Model.NomeRepresentante</div>
+            </div>
+
+            <div class="form-group col-md-6 my-3">
+                <div class="font-weight-bold">Clientes:</div>
+                <div class="border">
+                    @if (Model.Clientes.Count() > 0)
+                    {
+                        @foreach (var rep in Model.Clientes)
+                        {
+                            @rep.Nome <br />
+                        }
+                    }
+                    else
+                    {
+                        <h5 class="font-weight-bolder text-danger"> Não Há</h5>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="row justify-content-end">
+                <div>
+                    <a class="btn btn-outline-warning"
+                       asp-controller="Representante"
+                       asp-action="Alterar"
+                       asp-route-id="@Model.RepresentanteId">Editar</a>
+                </div>
+                <div>
+                    <a class="btn btn-outline-primary ml-3" asp-action="Index">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

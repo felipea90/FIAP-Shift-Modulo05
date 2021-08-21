@@ -4,6 +4,11 @@
     <td>@Model.RepresentanteId</td>
     <td>@Model.NomeRepresentante</td>
     <td class="row border-0 justify-content-center">
+        <a class="btn btn-outline-primary mr-1 btn-sm"
+           asp-controller="Representante"
+           asp-action="Detalhes"
+           asp-route-id="@Model.RepresentanteId">Detalhes</a>
+
         <a class="btn btn-outline-warning mr-1 btn-sm"
            asp-controller="Representante"
            asp-action="Alterar"

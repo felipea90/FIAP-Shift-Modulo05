@@ -76,6 +76,9 @@ namespace Fiap.Web.AspNet.Data
         public DbSet<ClienteModel> Clientes { get; set; }
         public DbSet<CidadeModel> Cidades { get; set; }
         public DbSet<PaisModel> Pais { get; set; }
+        public DbSet<ProdutoModel> Produtos { get; set; }
+        public DbSet<LojaModel> Lojas { get; set; }
+        public DbSet<ProdutoLojaModel> ProdutoLoja { get; set; }
 
     }
 }
