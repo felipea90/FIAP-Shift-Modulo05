@@ -4,14 +4,16 @@ using Fiap.Web.AspNet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fiap.Web.AspNet.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210821131410_Cidade")]
+    partial class Cidade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,29 +93,6 @@ namespace Fiap.Web.AspNet.Migrations
                     b.HasIndex("RepresentanteId");
 
                     b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("Fiap.Web.AspNet.Models.PaisModel", b =>
-                {
-                    b.Property<int>("PaisId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Continente")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("NomePais")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("PaisId");
-
-                    b.HasIndex("NomePais");
-
-                    b.ToTable("Pais");
                 });
 
             modelBuilder.Entity("Fiap.Web.AspNet.Models.RepresentanteModel", b =>

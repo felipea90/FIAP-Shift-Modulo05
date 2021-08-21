@@ -24,14 +24,20 @@ namespace Fiap.Web.AspNet.Repository
         public ClienteModel FindById(int id)
         {
             var cliente = context.Clientes.Find(id);
-
             return cliente;
         }
 
-        public void Insert(ClienteModel cliente)
+        //public void Insert(ClienteModel cliente)
+        //{
+        //    context.Clientes.Add(cliente);
+        //    context.SaveChanges();
+        //}
+
+        public int Insert(ClienteModel cliente)
         {
             context.Clientes.Add(cliente);
             context.SaveChanges();
+            return cliente.ClienteId;
         }
 
         public void Update(ClienteModel cliente)
@@ -42,7 +48,8 @@ namespace Fiap.Web.AspNet.Repository
 
         public void Delete(int id)
         {
-            context.Clientes.Remove(FindById(id));
+            //context.Clientes.Remove(FindById(id));
+            context.Clientes.Remove(new ClienteModel() { ClienteId = id });
             context.SaveChanges();
         }
     }

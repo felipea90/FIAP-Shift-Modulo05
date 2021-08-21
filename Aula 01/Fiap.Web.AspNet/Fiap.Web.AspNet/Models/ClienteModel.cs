@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fiap.Web.AspNet.Models
 {
@@ -53,8 +54,10 @@ namespace Fiap.Web.AspNet.Models
         }
 
         [Key]
+        [Required]
         [Display(Name = "Id do Cliente:")]
         [HiddenInput]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClienteId { get; set; }
 
         [Display(Name = "Nome do Cliente:")]
@@ -77,6 +80,8 @@ namespace Fiap.Web.AspNet.Models
 
         [Required]
         public int RepresentanteId { get; set; }
+
+        [ForeignKey("RepresentanteId")]
         public RepresentanteModel Representante { get; set; }
 
     }
