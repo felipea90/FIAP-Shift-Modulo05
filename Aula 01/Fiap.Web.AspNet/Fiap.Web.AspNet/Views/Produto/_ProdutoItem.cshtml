@@ -1,0 +1,22 @@
+﻿@model ProdutoModel
+
+<tr>
+    <td>@Model.ProdutoId</td>
+    <td>@Model.NomeProduto</td>
+    <td class="row border-0 justify-content-center">
+        <a class="btn btn-outline-primary mr-1 btn-sm"
+           asp-controller="Produto"
+           asp-action="Detalhes"
+           asp-route-id="@Model.ProdutoId">Detalhes</a>
+
+        <a class="btn btn-outline-warning mr-1 btn-sm"
+           asp-controller="Produto"
+           asp-action="Alterar"
+           asp-route-id="@Model.ProdutoId">Editar</a>
+
+        <a class="btn btn-outline-danger btn-sm"
+           asp-controller="Produto"
+           asp-action="Excluir"
+           asp-route-id="@Model.ProdutoId">Remover</a>
+    </td>
+</tr>

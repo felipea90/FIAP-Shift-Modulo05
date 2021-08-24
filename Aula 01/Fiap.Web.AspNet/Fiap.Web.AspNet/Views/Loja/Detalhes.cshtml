@@ -1,0 +1,38 @@
+﻿@model LojaModel
+
+<div class="container">
+    <h1 class="bg-dark p-5 mb-3 text-light text-center">Detalhes - Loja</h1>
+
+    <form asp-controller="Loja" asp-action="Detalhes" method="get">
+
+        <div class="form-group col-md-6 my-3">
+            <div class="font-weight-bold">Loja ID:</div>
+            <div class="form-control">@Model.LojaId</div>
+        </div>
+
+        <div class="form-group col-md-6 my-3">
+            <div class="font-weight-bold">Nome da Loja:</div>
+            <div class="form-control">@Model.NomeLoja</div>
+        </div>
+
+        @if (Model.ProdutoLoja.Count > 0)
+        {
+            <h3>Produtos:</h3>
+            <ul>
+                @foreach (var item in Model.ProdutoLoja)
+                {
+                    <li>@item.Produto.NomeProduto</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h3 class="font-weight-bolder text-danger">Não existem produtos no estoque dessa loja!</h3>
+        }
+
+    </form>
+
+    <div>
+        <a class="btn btn-outline-primary ml-3 justify-content-end" asp-action="Index">Voltar</a>
+    </div>
+</div>

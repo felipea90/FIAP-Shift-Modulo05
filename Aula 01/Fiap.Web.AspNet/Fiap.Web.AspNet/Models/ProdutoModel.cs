@@ -9,7 +9,10 @@ namespace Fiap.Web.AspNet.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Id do Produto:")]
         public int ProdutoId { get; set; }
+
+        [Display(Name = "Nome do Produto:")]
         public String NomeProduto { get; set; }
 
         public ICollection<ProdutoLojaModel> ProdutoLoja { get; set; }

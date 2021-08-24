@@ -30,15 +30,15 @@ namespace Fiap.Web.AspNet.Controllers
 
         public IActionResult Privacy()
         {
-            var produto = context.Produtos
-                .Include(p => p.ProdutoLoja)
-                .ThenInclude(l => l.Loja)
-                .SingleOrDefault(p => p.ProdutoId == 3);
+            //var produto = context.Produtos
+            //    .Include(p => p.ProdutoLoja)
+            //    .ThenInclude(l => l.Loja)
+            //    .SingleOrDefault(p => p.ProdutoId == 3);
 
-            var loja = context.Lojas
-                .Include(l => l.ProdutoLoja)
-                .ThenInclude(p => p.Produto)
-                .ToList();
+            //var loja = context.Lojas
+            //    .Include(l => l.ProdutoLoja)
+            //    .ThenInclude(p => p.Produto)
+            //    .ToList();
 
             return View();
         }
