@@ -1,5 +1,6 @@
 ﻿using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
+using Fiap.Web.AspNet.Repository.Interface;
 using Fiap.Web.AspNet.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,19 +13,21 @@ namespace Fiap.Web.AspNet.Controllers
 {
     public class ProdutoController : Controller
     {
-        private readonly ProdutoRepository produtoRepository;
-        private readonly LojaRepository lojaRepository;
+        private readonly IProdutoRepository _produtoRepository;
+        private readonly ILojaRepository _lojaRepository;
 
-        public ProdutoController()
+        public ProdutoController(
+            IProdutoRepository produtoRepository, 
+            ILojaRepository lojaRepository)
         {
-            produtoRepository = new ProdutoRepository();
-            lojaRepository = new LojaRepository();
+            _produtoRepository = produtoRepository;
+            _lojaRepository = lojaRepository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            IList<ProdutoModel> produto = produtoRepository.FindAll();
+            IList<ProdutoModel> produto = _produtoRepository.FindAll();
 
             return View(produto);
         }
@@ -32,13 +35,13 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public ActionResult Detalhes(int id)
         {
-            return View(produtoRepository.FindById(id));
+            return View(_produtoRepository.FindById(id));
         }
 
         [HttpGet]
         public ActionResult Novo()
         {
-            ViewBag.Lojas = lojaRepository.FindAll();
+            ViewBag.Lojas = _produtoRepository.FindAll();
 
             return View();
         }
@@ -61,7 +64,7 @@ namespace Fiap.Web.AspNet.Controllers
                 produtoModel.ProdutoLoja.Add(produtoLojaModel);
             }
 
-            produtoRepository.Insert(produtoModel);
+            _produtoRepository.Insert(produtoModel);
 
             TempData["mensagemSucesso"] = "Produto cadastrado com sucesso";
 
@@ -71,10 +74,10 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public ActionResult Alterar(int id)
         {
-            var lojas = lojaRepository.FindAll();
+            var lojas = _produtoRepository.FindAll();
             ViewBag.Lojas = new SelectList(lojas, "LojaId", "NomeLoja");
 
-            var produtoModel = produtoRepository.FindById(id);
+            var produtoModel = _produtoRepository.FindById(id);
             var produtoLojaViewModel = new ProdutoLojaViewModel();
             produtoLojaViewModel.Produto = produtoModel;
             produtoLojaViewModel.LojaId = produtoModel.ProdutoLoja.Select(l => l.LojaId).ToList();
@@ -100,7 +103,7 @@ namespace Fiap.Web.AspNet.Controllers
                 produtoModel.ProdutoLoja.Add(produtoLojaModel);
             }
 
-            produtoRepository.Update(produtoModel);
+            _produtoRepository.Update(produtoModel);
 
             TempData["mensagemSucesso"] = "Produto alterado com sucesso";
 
@@ -110,7 +113,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public ActionResult Excluir(int id)
         {
-            produtoRepository.Delete(id);
+            _produtoRepository.Delete(id);
 
             TempData["mensagemSucesso"] = "Produto removido com sucesso";
 

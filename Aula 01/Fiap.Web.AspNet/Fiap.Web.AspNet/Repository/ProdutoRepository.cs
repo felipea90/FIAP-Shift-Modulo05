@@ -1,5 +1,6 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace Fiap.Web.AspNet.Repository
 {
-    public class ProdutoRepository
+    public class ProdutoRepository : IProdutoRepository
     {
         private readonly DataContext _context;
 
-        public ProdutoRepository()
+        public ProdutoRepository(
+            DataContext context)
         {
-            _context = new DataContext();
+            _context = context;
         }
 
         public IList<ProdutoModel> FindAll()

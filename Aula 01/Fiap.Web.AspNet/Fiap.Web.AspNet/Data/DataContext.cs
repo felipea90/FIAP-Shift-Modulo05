@@ -17,19 +17,19 @@ namespace Fiap.Web.AspNet.Data
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder.IsConfigured == false)
-            {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json").Build();
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (optionsBuilder.IsConfigured == false)
+        //    {
+        //        var config = new ConfigurationBuilder()
+        //            .SetBasePath(Directory.GetCurrentDirectory())
+        //            .AddJsonFile("appsettings.json").Build();
 
-                optionsBuilder.UseSqlServer(config.GetConnectionString("databaseUrl"));
-                optionsBuilder.EnableSensitiveDataLogging();
-                optionsBuilder.LogTo(Console.Write);
-            }
-        }
+        //        optionsBuilder.UseSqlServer(config.GetConnectionString("databaseUrl"));
+        //        optionsBuilder.EnableSensitiveDataLogging();
+        //        optionsBuilder.LogTo(Console.Write);
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

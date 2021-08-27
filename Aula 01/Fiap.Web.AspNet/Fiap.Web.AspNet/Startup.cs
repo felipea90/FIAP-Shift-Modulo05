@@ -31,9 +31,9 @@ namespace Fiap.Web.AspNet
             var connectionString = Configuration.GetConnectionString("databaseUrl");
             services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 
-            //services.AddScoped<ClienteRepository>();
-            //services.AddScoped<ProdutoRepository>();
-            //services.AddScoped<LojaRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ILojaRepository, LojaRepository>();
             services.AddScoped<IRepresentanteRepository, RepresentanteRepository>();
 
             services.AddControllersWithViews();

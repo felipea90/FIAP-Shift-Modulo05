@@ -1,5 +1,6 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,13 +8,14 @@ using System.Linq;
 
 namespace Fiap.Web.AspNet.Repository
 {
-    public class ClienteRepository
+    public class ClienteRepository : IClienteRepository
     {
         private readonly DataContext _context;
 
-        public ClienteRepository()
+        public ClienteRepository(
+            DataContext context)
         {
-            _context = new DataContext();
+            _context = context;
         }
 
         public IList<ClienteModel> FindAll()

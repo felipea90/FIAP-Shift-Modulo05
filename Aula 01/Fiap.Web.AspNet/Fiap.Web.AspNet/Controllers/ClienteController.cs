@@ -1,6 +1,7 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +13,15 @@ namespace Fiap.Web.AspNet.Controllers
 {
     public class ClienteController : Controller
     {
-        private readonly ClienteRepository clienteRepository;
-        private readonly RepresentanteRepository representanteRepository;
+        private readonly IClienteRepository _clienteRepository;
+        private readonly IRepresentanteRepository _representanteRepository;
 
-        public ClienteController()
+        public ClienteController(
+            IClienteRepository clienteRepository,
+            IRepresentanteRepository representanteRepository)
         {
-            clienteRepository = new ClienteRepository();
-            //representanteRepository = new RepresentanteRepository();
-            representanteRepository = null;
+            _clienteRepository = clienteRepository;
+            _representanteRepository = representanteRepository;
         }
 
         [HttpGet]
@@ -27,7 +29,7 @@ namespace Fiap.Web.AspNet.Controllers
         {
             Console.WriteLine("validando o acesso ao controller Home e ação Index");
 
-            IList<ClienteModel> clientes = clienteRepository.FindAll();
+            IList<ClienteModel> clientes = _clienteRepository.FindAll();
 
             return View(clientes);
         }
@@ -35,7 +37,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Novo()
         {
-            IList<RepresentanteModel> representantes = representanteRepository.FindAll();
+            IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
 
             ViewBag.Representantes = new SelectList(representantes, "RepresentanteId", "NomeRepresentante");
 
@@ -45,7 +47,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpPost]
         public IActionResult Novo(ClienteModel model)
         {
-           clienteRepository.Insert(model);
+            _clienteRepository.Insert(model);
 
             TempData["mensagemSucesso"] = $"Cliente {model.Nome} CADASTRADO com sucesso!";
 
@@ -78,11 +80,11 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Alterar(int id)
         {
-            IList<RepresentanteModel> representantes = representanteRepository.FindAll();
+            IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
 
             ViewBag.Representantes = new SelectList(representantes, "RepresentanteId", "NomeRepresentante");
 
-            ClienteModel clienteModel = clienteRepository.FindById(id);
+            ClienteModel clienteModel = _clienteRepository.FindById(id);
 
             return View(clienteModel);
         }
@@ -91,7 +93,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpPost]
         public IActionResult Alterar(ClienteModel model)
         {
-            clienteRepository.Update(model);
+            _clienteRepository.Update(model);
 
             TempData["mensagemSucesso"] = $"Cliente {model.Nome} ALTERADO com sucesso!";
 
@@ -101,7 +103,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            clienteRepository.Delete(id);
+            _clienteRepository.Delete(id);
 
             TempData["mensagemSucesso"] = $"Cliente REMOVIDO com sucesso!";
 
@@ -111,7 +113,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Detalhes(int id)
         {
-            var cliente = clienteRepository.FindById(id);
+            var cliente = _clienteRepository.FindById(id);
 
             return View(cliente);
         }
@@ -119,9 +121,9 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Detalhe(int id)
         {
-            var clienteModel = clienteRepository.FindById(id);
+            var clienteModel = _clienteRepository.FindById(id);
 
-            var representanteModel = representanteRepository.FindById(clienteModel.RepresentanteId);
+            var representanteModel = _representanteRepository.FindById(clienteModel.RepresentanteId);
 
             clienteModel.Representante = representanteModel;
 
