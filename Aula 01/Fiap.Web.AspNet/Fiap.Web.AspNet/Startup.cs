@@ -1,5 +1,6 @@
 using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Repository;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,12 +26,15 @@ namespace Fiap.Web.AspNet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<DataContext>(options => 
-            //options.UseSqlServer(Configuration.GetConnectionString("databaseUrl")));
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("databaseUrl")));
+
+            var connectionString = Configuration.GetConnectionString("databaseUrl");
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 
             //services.AddScoped<ClienteRepository>();
-
-            //services.AddScoped<RepresentanteRepository>();
+            //services.AddScoped<ProdutoRepository>();
+            //services.AddScoped<LojaRepository>();
+            services.AddScoped<IRepresentanteRepository, RepresentanteRepository>();
 
             services.AddControllersWithViews();
         }

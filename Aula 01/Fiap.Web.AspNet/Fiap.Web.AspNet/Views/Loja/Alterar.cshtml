@@ -12,6 +12,8 @@
 
                 <form asp-controller="Loja" asp-action="Alterar" method="post">
 
+                    <input type="hidden" asp-for="LojaId" />
+
                     <div class="form-group col-md-6 my-3">
                         <div class="font-weight-bold">Loja ID:</div>
                         <div class="form-control">@Model.LojaId</div>

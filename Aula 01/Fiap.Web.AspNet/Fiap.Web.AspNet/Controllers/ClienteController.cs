@@ -14,13 +14,12 @@ namespace Fiap.Web.AspNet.Controllers
     {
         private readonly ClienteRepository clienteRepository;
         private readonly RepresentanteRepository representanteRepository;
-        private readonly DataContext context;
 
         public ClienteController()
         {
             clienteRepository = new ClienteRepository();
-            representanteRepository = new RepresentanteRepository();
-            context = new DataContext();
+            //representanteRepository = new RepresentanteRepository();
+            representanteRepository = null;
         }
 
         [HttpGet]

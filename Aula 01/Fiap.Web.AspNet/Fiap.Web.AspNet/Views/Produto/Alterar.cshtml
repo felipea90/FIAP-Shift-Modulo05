@@ -10,10 +10,12 @@
             <div class="well">
                 <h1 class="bg-dark p-5 mb-3 text-light text-center"><strong>Produto - Alterar</strong></h1>
 
-                @using (Html.BeginForm("Alterar", "Produto", FormMethod.Post))
-                {
+                <form asp-controller="Produto" asp-action="Alterar" method="post">
+
+                    <input type="hidden" asp-for="Produto.ProdutoId" />
+
                     <div class="form-group col-md-6 my-3">
-                        <div class="control-label">Produto ID:</div>
+                        <div class="font-weight-bold">Produto ID:</div>
                         <div class="form-control">@Model.Produto.ProdutoId</div>
                     </div>
 
@@ -34,7 +36,7 @@
                             <button type="submit" class="btn btn-outline-primary btn-lg">Gravar</button>
                         </div>
                     </div>
-                }
+                </form>
             </div>
         </div>
     </div>

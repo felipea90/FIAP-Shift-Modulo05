@@ -1,5 +1,7 @@
-﻿using Fiap.Web.AspNet.Models;
+﻿using Fiap.Web.AspNet.Data;
+using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,18 @@ namespace Fiap.Web.AspNet.Controllers
 {
     public class RepresentanteController : Controller
     {
-        private readonly ClienteRepository clienteRepository;
-        private readonly RepresentanteRepository representanteRepository;
+        private readonly IRepresentanteRepository _representanteRepository;
 
-        public RepresentanteController()
+        public RepresentanteController(
+            IRepresentanteRepository representanteRepository)
         {
-            clienteRepository = new ClienteRepository();
-            representanteRepository = new RepresentanteRepository();
+            _representanteRepository = representanteRepository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            IList<RepresentanteModel> representantes = representanteRepository.FindAll();
+            IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
 
             return View(representantes);
         }
@@ -36,7 +37,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpPost]
         public IActionResult Novo(RepresentanteModel model)
         {
-            representanteRepository.Insert(model);
+            _representanteRepository.Insert(model);
 
             TempData["mensagemSucesso"] = $"Representante {model.NomeRepresentante} CADASTRADO com sucesso!";
 
@@ -46,7 +47,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Alterar(int id)
         {
-            var representante = representanteRepository.FindById(id);
+            var representante = _representanteRepository.FindById(id);
 
             return View(representante);
         }
@@ -54,7 +55,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpPost]
         public IActionResult Alterar(RepresentanteModel model)
         {
-            representanteRepository.Update(model);
+            _representanteRepository.Update(model);
 
             TempData["mensagemSucesso"] = $"Representante {model.NomeRepresentante} ALTERADO com sucesso!";
 
@@ -64,7 +65,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            representanteRepository.Delete(id);
+            _representanteRepository.Delete(id);
 
             TempData["mensagemSucesso"] = $"Representante REMOVIDO com sucesso!";
 
@@ -74,7 +75,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Detalhes(int id)
         {
-            var representante = representanteRepository.FindByIdWithClientes(id);
+            var representante = _representanteRepository.FindByIdWithClientes(id);
 
             return View(representante);
         }

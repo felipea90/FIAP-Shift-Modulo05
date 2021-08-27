@@ -11,22 +11,22 @@ namespace Fiap.Web.AspNet.Repository
 {
     public class ProdutoRepository
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
 
         public ProdutoRepository()
         {
-            context = new DataContext();
+            _context = new DataContext();
         }
 
         public IList<ProdutoModel> FindAll()
         {
-            var lista = context.Produtos.ToList();
+            var lista = _context.Produtos.ToList();
             return lista;
         }
 
         public ProdutoModel FindById(int id)
         {
-            var produto = context.Produtos
+            var produto = _context.Produtos
                 .Include(p => p.ProdutoLoja)
                 .ThenInclude(l => l.Loja)
                 .SingleOrDefault(p => p.ProdutoId == id);
@@ -36,21 +36,26 @@ namespace Fiap.Web.AspNet.Repository
 
         public int Insert(ProdutoModel produto)
         {
-            context.Produtos.Add(produto);
-            context.SaveChanges();
+            _context.Produtos.Add(produto);
+            _context.SaveChanges();
             return produto.ProdutoId;
         }
 
         public void Update(ProdutoModel produto)
         {
-            context.Produtos.Update(produto);
-            context.SaveChanges();
+            var produtoAtual = FindById(produto.ProdutoId);
+
+            produtoAtual.NomeProduto = produto.NomeProduto;
+            produtoAtual.ProdutoLoja = produto.ProdutoLoja;
+
+            _context.Produtos.Update(produtoAtual);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            context.Produtos.Remove(new ProdutoModel() { ProdutoId = id });
-            context.SaveChanges();
+            _context.Produtos.Remove(new ProdutoModel() { ProdutoId = id });
+            _context.SaveChanges();
         }
     }
 }

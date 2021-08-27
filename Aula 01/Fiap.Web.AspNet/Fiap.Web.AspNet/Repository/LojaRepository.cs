@@ -11,22 +11,22 @@ namespace Fiap.Web.AspNet.Repository
 {
     public class LojaRepository
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
 
         public LojaRepository()
         {
-            context = new DataContext();
+            _context = new DataContext();
         }
 
         public IList<LojaModel> FindAll()
         {
-            var lista = context.Lojas.ToList();
+            var lista = _context.Lojas.ToList();
             return lista;
         }
 
         public LojaModel FindById(int id)
         {
-            var loja = context.Lojas
+            var loja = _context.Lojas
                 .Include(l => l.ProdutoLoja)
                 .ThenInclude(p => p.Produto)
                 .SingleOrDefault(l => l.LojaId == id);
@@ -36,21 +36,21 @@ namespace Fiap.Web.AspNet.Repository
 
         public int Insert(LojaModel loja)
         {
-            context.Lojas.Add(loja);
-            context.SaveChanges();
+            _context.Lojas.Add(loja);
+            _context.SaveChanges();
             return loja.LojaId;
         }
 
         public void Update(LojaModel loja)
         {
-            context.Lojas.Update(loja);
-            context.SaveChanges();
+            _context.Lojas.Update(loja);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            context.Lojas.Remove(new LojaModel() { LojaId = id });
-            context.SaveChanges();
+            _context.Lojas.Remove(new LojaModel() { LojaId = id });
+            _context.SaveChanges();
         }
     }
 }

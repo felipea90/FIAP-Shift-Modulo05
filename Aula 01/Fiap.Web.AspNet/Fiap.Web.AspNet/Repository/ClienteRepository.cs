@@ -9,22 +9,22 @@ namespace Fiap.Web.AspNet.Repository
 {
     public class ClienteRepository
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
 
         public ClienteRepository()
         {
-            context = new DataContext();
+            _context = new DataContext();
         }
 
         public IList<ClienteModel> FindAll()
         {
-            var lista = context.Clientes.ToList();
+            var lista = _context.Clientes.ToList();
             return lista;
         }
 
         public ClienteModel FindById(int id)
         {
-            var cliente = context.Clientes
+            var cliente = _context.Clientes
                 .Include(c => c.Representante)
                 .SingleOrDefault(c => c.ClienteId == id);
 
@@ -39,22 +39,22 @@ namespace Fiap.Web.AspNet.Repository
 
         public int Insert(ClienteModel cliente)
         {
-            context.Clientes.Add(cliente);
-            context.SaveChanges();
+            _context.Clientes.Add(cliente);
+            _context.SaveChanges();
             return cliente.ClienteId;
         }
 
         public void Update(ClienteModel cliente)
         {
-            context.Clientes.Update(cliente);
-            context.SaveChanges();
+            _context.Clientes.Update(cliente);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             //context.Clientes.Remove(FindById(id));
-            context.Clientes.Remove(new ClienteModel() { ClienteId = id });
-            context.SaveChanges();
+            _context.Clientes.Remove(new ClienteModel() { ClienteId = id });
+            _context.SaveChanges();
         }
     }
 }

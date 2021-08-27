@@ -1,5 +1,6 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
+using Fiap.Web.AspNet.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,31 +8,32 @@ using System.Linq;
 
 namespace Fiap.Web.AspNet.Repository
 {
-    public class RepresentanteRepository
+    public class RepresentanteRepository : IRepresentanteRepository
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
 
-        public RepresentanteRepository()
+        public RepresentanteRepository(
+            DataContext context)
         {
-            context = new DataContext();
+            _context = context;
         }
 
         public IList<RepresentanteModel> FindAll()
         {
-            var lista = context.Representantes.ToList();
+            var lista = _context.Representantes.ToList();
             return lista;
         }
 
         public RepresentanteModel FindById(int id)
         {
-            var representante = context.Representantes.Find(id);
+            var representante = _context.Representantes.Find(id);
 
             return representante;
         }
 
         public RepresentanteModel FindByIdWithClientes(int id)
         {
-            var representante = context.Representantes
+            var representante = _context.Representantes
                 .Include(c => c.Clientes)
                 .SingleOrDefault(c => c.RepresentanteId == id);
 
@@ -40,20 +42,20 @@ namespace Fiap.Web.AspNet.Repository
 
         public void Insert(RepresentanteModel representante)
         {
-            context.Representantes.Add(representante);
-            context.SaveChanges();
+            _context.Representantes.Add(representante);
+            _context.SaveChanges();
         }
 
         public void Update(RepresentanteModel representante)
         {
-            context.Representantes.Update(representante);
-            context.SaveChanges();
+            _context.Representantes.Update(representante);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            context.Representantes.Remove(FindById(id));
-            context.SaveChanges();
+            _context.Representantes.Remove(FindById(id));
+            _context.SaveChanges();
         }
 
         //public void Delete(int id)
@@ -66,8 +68,8 @@ namespace Fiap.Web.AspNet.Repository
 
         //public void Delete(RepresentanteModel representanteModel)
         //{
-        //    context.Representante.Remove(representanteModel);
-        //    context.SaveChanges();
+        //    _context.Representante.Remove(representanteModel);
+        //    _context.SaveChanges();
         //}
     }
 }
