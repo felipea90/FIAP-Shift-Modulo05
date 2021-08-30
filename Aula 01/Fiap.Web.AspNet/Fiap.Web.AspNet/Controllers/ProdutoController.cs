@@ -41,7 +41,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public ActionResult Novo()
         {
-            ViewBag.Lojas = _produtoRepository.FindAll();
+            ViewBag.Lojas = _lojaRepository.FindAll();
 
             return View();
         }
@@ -74,7 +74,7 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public ActionResult Alterar(int id)
         {
-            var lojas = _produtoRepository.FindAll();
+            var lojas = _lojaRepository.FindAll();
             ViewBag.Lojas = new SelectList(lojas, "LojaId", "NomeLoja");
 
             var produtoModel = _produtoRepository.FindById(id);
