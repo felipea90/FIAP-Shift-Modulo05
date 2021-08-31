@@ -1,4 +1,5 @@
 ﻿using Fiap.Web.AspNet.Models;
+using Fiap.Web.AspNet.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace Fiap.Web.AspNet.Repository.Interface
 
         public RepresentanteModel FindByIdWithClientes(int id);
 
-        public void Insert(RepresentanteModel representante);
+        public void Insert(RepresentanteModel representanteVM);
 
-        public void Update(RepresentanteModel representante);
+        public void Update(RepresentanteModel representanteVM);
 
         public void Delete(int id);
     }

@@ -1,6 +1,9 @@
+using AutoMapper;
 using Fiap.Web.AspNet.Data;
+using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
 using Fiap.Web.AspNet.Repository.Interface;
+using Fiap.Web.AspNet.ViewModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +33,27 @@ namespace Fiap.Web.AspNet
 
             var connectionString = Configuration.GetConnectionString("databaseUrl");
             services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+
+            var mapperConfig = new AutoMapper.MapperConfiguration(
+                c => 
+                {
+                    // Passar ORIGEM -> DESTINO no CreateMap
+
+                    c.CreateMap<RepresentanteViewModel, RepresentanteModel>();
+                    c.CreateMap<RepresentanteModel, RepresentanteViewModel>()
+                    .ForMember(v => v.Clientes, m => m.MapFrom(x => x.Clientes));
+
+                    c.CreateMap<IList<RepresentanteModel>, IList<RepresentanteViewModel>>();
+                    c.CreateMap<IList<RepresentanteViewModel>, IList<RepresentanteModel>>();
+
+                    c.CreateMap<ClienteViewModel, ClienteModel>();
+                    c.CreateMap<ClienteModel, ClienteViewModel>();
+
+                    c.CreateMap<ProdutoLojaViewModel, ProdutoModel>();
+                    c.CreateMap<ProdutoModel, ProdutoLojaViewModel>();
+                });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

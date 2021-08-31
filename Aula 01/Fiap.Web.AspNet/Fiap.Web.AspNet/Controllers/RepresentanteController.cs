@@ -1,8 +1,11 @@
-﻿using Fiap.Web.AspNet.Data;
+﻿using AutoMapper;
+using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
 using Fiap.Web.AspNet.Repository.Interface;
+using Fiap.Web.AspNet.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,33 +16,50 @@ namespace Fiap.Web.AspNet.Controllers
     public class RepresentanteController : Controller
     {
         private readonly IRepresentanteRepository _representanteRepository;
+        private readonly IMapper _mapper;
 
         public RepresentanteController(
-            IRepresentanteRepository representanteRepository)
+            IRepresentanteRepository representanteRepository,
+            IMapper mapper)
         {
             _representanteRepository = representanteRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
+            var representanteVM = _mapper
+                .Map<IEnumerable<RepresentanteViewModel>>(_representanteRepository.FindAll());
 
-            return View(representantes);
+            //IList<RepresentanteModel> representante = _representanteRepository.FindAll();
+
+            //representanteVM.Representantes = _representanteRepository.FindAll()
+            //    .Select(item => 
+            //    new RepresentanteViewModel(item.RepresentanteId, item.NomeRepresentante))
+            //    .ToList();
+            
+            return View(representanteVM);
         }
 
         [HttpGet]
         public IActionResult Novo()
         {
-            return View(new RepresentanteModel());
+            return View(new RepresentanteViewModel());
         }
 
         [HttpPost]
-        public IActionResult Novo(RepresentanteModel model)
+        public IActionResult Novo(RepresentanteViewModel representanteVM)
         {
-            _representanteRepository.Insert(model);
+            //var representanteModel = new RepresentanteModel();
+            //representanteModel.RepresentanteId = representanteVM.RepresentanteId;
+            //representanteModel.NomeRepresentante = representanteVM.NomeRepresentante;
 
-            TempData["mensagemSucesso"] = $"Representante {model.NomeRepresentante} CADASTRADO com sucesso!";
+            var representanteModel = _mapper.Map<RepresentanteModel>(representanteVM);
+
+            _representanteRepository.Insert(representanteModel);
+
+            TempData["mensagemSucesso"] = $"Representante {representanteVM.NomeRepresentante} CADASTRADO com sucesso!";
 
             return RedirectToAction("Index");
         }
@@ -47,17 +67,21 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Alterar(int id)
         {
-            var representante = _representanteRepository.FindById(id);
+            var representanteModel = _representanteRepository.FindById(id);
 
-            return View(representante);
+            var representanteVM = _mapper.Map<RepresentanteViewModel>(representanteModel);
+
+            return View(representanteVM);
         }
 
         [HttpPost]
-        public IActionResult Alterar(RepresentanteModel model)
+        public IActionResult Alterar(RepresentanteViewModel representanteVM)
         {
-            _representanteRepository.Update(model);
+            var representanteModel = _mapper.Map<RepresentanteModel>(representanteVM);
 
-            TempData["mensagemSucesso"] = $"Representante {model.NomeRepresentante} ALTERADO com sucesso!";
+            _representanteRepository.Update(representanteModel);
+
+            TempData["mensagemSucesso"] = $"Representante {representanteVM.NomeRepresentante} ALTERADO com sucesso!";
 
             return RedirectToAction("Index");
         }
@@ -75,9 +99,11 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpGet]
         public IActionResult Detalhes(int id)
         {
-            var representante = _representanteRepository.FindByIdWithClientes(id);
+            var representanteVM = _representanteRepository.FindByIdWithClientes(id);
 
-            return View(representante);
+            var representanteModel = _mapper.Map<RepresentanteViewModel>(representanteVM);
+
+            return View(representanteModel);
         }
     }
 }

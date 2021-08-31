@@ -1,6 +1,7 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository.Interface;
+using Fiap.Web.AspNet.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
