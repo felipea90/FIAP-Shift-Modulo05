@@ -13,9 +13,13 @@
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
         "outputPath": "E:\\FIAP - Shift\\Mastering C\\Modulo 05\\FIAP-Shift-Modulo05\\Aula 01\\Fiap.Web.AspNet\\Fiap.Web.AspNet\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
           "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

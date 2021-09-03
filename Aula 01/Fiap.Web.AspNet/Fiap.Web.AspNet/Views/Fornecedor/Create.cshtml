@@ -1,0 +1,98 @@
+﻿@model Fiap.Web.AspNet.ViewModel.FornecedorViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js" crossorigin="anonymous"></script>
+
+<h4>FornecedorViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" id="cadastroFornecedor">
+            <!-- <div asp-validation-summary="All" class="text-danger"></div> -->
+            <div class="row">
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="Cnpj" class="control-label"></label>
+                    <input asp-for="Cnpj" class="form-control" />
+                    <span asp-validation-for="Cnpj" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="RazaoSocial" class="control-label"></label>
+                    <input asp-for="RazaoSocial" class="form-control" />
+                    <span asp-validation-for="RazaoSocial" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="Telefone" class="control-label"></label>
+                    <input asp-for="Telefone" class="form-control" />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="Endereco" class="control-label"></label>
+                    <input asp-for="Endereco" class="form-control" />
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="DataAbertura" class="control-label"></label>
+                    <input asp-for="DataAbertura" class="form-control" />
+                    <span asp-validation-for="DataAbertura" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="ValorCapitalSocial" class="control-label"></label>
+                    <input asp-for="ValorCapitalSocial" class="form-control" />
+                    <span asp-validation-for="ValorCapitalSocial" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 my-3">
+                    <label asp-for="QuantidadeFuncionario" class="control-label"></label>
+                    <input asp-for="QuantidadeFuncionario" class="form-control" />
+                    <span asp-validation-for="QuantidadeFuncionario" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div>
+                    <input type="button" id="botaoSubmit" value="Create" class="btn btn-primary" />
+                </div>
+                <div class="ml-3">
+                    <a class="btn btn-danger" asp-controller="Home" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $("#botaoSubmit").click(function () {
+
+        if ($("#Cnpj").val() == "") {
+            alert("CNPJ requerido");
+            return;
+        }
+
+        $("#cadastroFornecedor").submit();
+    });
+
+    $('#Cnpj').mask('00.000.000/0000-00', {
+        onKeyPress: function (cpfcnpj, e, field, options) {
+            $('#Cnpj').mask('00.000.000/0000-00', options);
+        }
+    });
+
+    $('#Telefone').mask('(00) 0 0000-0000', {
+        onKeyPress: function (telefone, e, field, options) {
+            $('#Telefone').mask('(00) 0 0000-0000', options);
+        }
+    });
+
+</script>
+
+

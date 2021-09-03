@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using Fiap.Web.AspNet.ViewModel;
 
 namespace Fiap.Web.AspNet.Data
 {
@@ -84,6 +85,7 @@ namespace Fiap.Web.AspNet.Data
         public DbSet<ProdutoModel> Produtos { get; set; }
         public DbSet<LojaModel> Lojas { get; set; }
         public DbSet<ProdutoLojaModel> ProdutoLoja { get; set; }
+        public DbSet<Fiap.Web.AspNet.ViewModel.FornecedorViewModel> FornecedorViewModel { get; set; }
 
     }
 }

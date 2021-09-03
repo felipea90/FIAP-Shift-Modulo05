@@ -173,3 +173,4 @@ E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNe
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Produto\Novo.cshtml.g.cs
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Produto\_ProdutoItem.cshtml.g.cs
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\bin\Debug\netcoreapp3.1\AutoMapper.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet\obj\Debug\netcoreapp3.1\Razor\Views\Fornecedor\Create.cshtml.g.cs
