@@ -15,6 +15,7 @@ namespace Fiap.Web.AspNet.Test
 {
     public class RepresentanteControllerTest
     {
+        /*
         // Lista de Representantes igual ao banco
         [Fact]
         public Task IndexReturnsViewResultWithListOfRepresentantes()
@@ -75,5 +76,6 @@ namespace Fiap.Web.AspNet.Test
             new RepresentanteModel(3,"Moreni"),
             };
         }
+        */
     }
 }

@@ -86,6 +86,7 @@ namespace Fiap.Web.AspNet.Data
         public DbSet<LojaModel> Lojas { get; set; }
         public DbSet<ProdutoLojaModel> ProdutoLoja { get; set; }
         public DbSet<Fiap.Web.AspNet.ViewModel.FornecedorViewModel> FornecedorViewModel { get; set; }
+        public DbSet<Fiap.Web.AspNet.ViewModel.LoginViewModel> LoginViewModel { get; set; }
 
     }
 }

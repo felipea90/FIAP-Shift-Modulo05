@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fiap.Web.AspNet.Models
 {
-    [Index(nameof(ProdutoId), nameof(LojaId), IsUnique = true)]
+    [Microsoft.EntityFrameworkCore.Index(nameof(ProdutoId), nameof(LojaId), IsUnique = true)]
     public class ProdutoLojaModel
     {
         [Key]

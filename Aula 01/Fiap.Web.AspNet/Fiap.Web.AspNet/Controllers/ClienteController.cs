@@ -1,7 +1,9 @@
-﻿using Fiap.Web.AspNet.Data;
+﻿using Fiap.Web.AspNet.Controllers.Filters;
+using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository;
 using Fiap.Web.AspNet.Repository.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,7 @@ using System.Linq;
 
 namespace Fiap.Web.AspNet.Controllers
 {
+    [FiapFilter]
     public class ClienteController : Controller
     {
         private readonly IClienteRepository _clienteRepository;
@@ -29,12 +32,15 @@ namespace Fiap.Web.AspNet.Controllers
         {
             Console.WriteLine("validando o acesso ao controller Home e ação Index");
 
-            IList<ClienteModel> clientes = _clienteRepository.FindAll();
+            //IList<ClienteModel> clientes = _clienteRepository.FindAll();
+
+            IList<ClienteModel> clientes = _clienteRepository.FindByEmailOrRepresentante("", 0);
 
             return View(clientes);
         }
 
         [HttpGet]
+        [FiapFilter]
         public IActionResult Novo()
         {
             IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
@@ -78,6 +84,7 @@ namespace Fiap.Web.AspNet.Controllers
 
 
         [HttpGet]
+        [FiapFilter]
         public IActionResult Alterar(int id)
         {
             IList<RepresentanteModel> representantes = _representanteRepository.FindAll();
@@ -101,6 +108,7 @@ namespace Fiap.Web.AspNet.Controllers
         }
 
         [HttpGet]
+        [FiapFilter]
         public IActionResult Excluir(int id)
         {
             _clienteRepository.Delete(id);
@@ -111,14 +119,23 @@ namespace Fiap.Web.AspNet.Controllers
         }
 
         [HttpGet]
+        [FiapFilter]
         public IActionResult Detalhes(int id)
         {
-            var cliente = _clienteRepository.FindById(id);
+            //var usuarioLogado = HttpContext.Session.GetString("usuarioLogado");
 
+            //if (string.IsNullOrEmpty(usuarioLogado))
+            //{
+            //    TempData["mensagemSucesso"] = "Sessão Expirada, efetue novamente o Login!";
+            //    return RedirectToAction("Index", "Login");
+            //}
+
+            var cliente = _clienteRepository.FindById(id);
             return View(cliente);
         }
 
         [HttpGet]
+        [FiapFilter]
         public IActionResult Detalhe(int id)
         {
             var clienteModel = _clienteRepository.FindById(id);

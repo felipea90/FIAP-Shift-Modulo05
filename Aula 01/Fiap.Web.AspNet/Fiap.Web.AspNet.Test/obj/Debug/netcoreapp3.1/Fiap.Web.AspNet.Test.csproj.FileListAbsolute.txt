@@ -217,3 +217,14 @@ E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNe
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\obj\Debug\netcoreapp3.1\Fiap.Web.AspNet.Test.dll
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\obj\Debug\netcoreapp3.1\Fiap.Web.AspNet.Test.pdb
 E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\obj\Debug\netcoreapp3.1\Fiap.Web.AspNet.Test.genruntimeconfig.cache
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\AutoMapper.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\EntityFramework.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\LinqKit.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\FIAP - Shift\Mastering C\Modulo 05\FIAP-Shift-Modulo05\Aula 01\Fiap.Web.AspNet\Fiap.Web.AspNet.Test\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

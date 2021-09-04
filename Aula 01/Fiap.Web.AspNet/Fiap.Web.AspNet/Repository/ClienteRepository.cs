@@ -1,6 +1,7 @@
 ﻿using Fiap.Web.AspNet.Data;
 using Fiap.Web.AspNet.Models;
 using Fiap.Web.AspNet.Repository.Interface;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,26 @@ namespace Fiap.Web.AspNet.Repository
 
             return cliente;
         }
+        public IList<ClienteModel> FindByEmailOrRepresentante(string email, int repId)
+        {
+            var condition = PredicateBuilder.New<ClienteModel>(true);
+
+            if (!String.IsNullOrWhiteSpace(email))
+                condition = condition.And(c => c.Email == email);
+
+            if (repId != 0)
+                condition = condition.And(c => c.RepresentanteId == repId);
+
+            var clientes = _context.Clientes.Include(c => c.Representante).Where(condition).ToList();
+
+            //var clientes = _context.Clientes
+            //    .Include(c => c.Representante)
+            //    .Where(c => ("" == email || c.Email == email) && 
+            //                (0 == repId || c.RepresentanteId == repId))
+            //    .ToList();
+
+            return clientes;
+        }
 
         //public void Insert(ClienteModel cliente)
         //{
@@ -58,5 +79,6 @@ namespace Fiap.Web.AspNet.Repository
             _context.Clientes.Remove(new ClienteModel() { ClienteId = id });
             _context.SaveChanges();
         }
+
     }
 }

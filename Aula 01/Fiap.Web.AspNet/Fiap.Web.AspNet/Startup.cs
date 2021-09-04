@@ -32,7 +32,7 @@ namespace Fiap.Web.AspNet
             //services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("databaseUrl")));
 
             var connectionString = Configuration.GetConnectionString("databaseUrl");
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging().LogTo(Console.Write));
 
             var mapperConfig = new AutoMapper.MapperConfiguration(
                 c => 
@@ -61,6 +61,13 @@ namespace Fiap.Web.AspNet
             services.AddScoped<IRepresentanteRepository, RepresentanteRepository>();
 
             services.AddControllersWithViews();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +86,8 @@ namespace Fiap.Web.AspNet
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

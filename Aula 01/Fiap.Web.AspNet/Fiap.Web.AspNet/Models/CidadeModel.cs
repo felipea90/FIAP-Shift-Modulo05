@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Fiap.Web.AspNet.Models
 {
     //[Table("Cidades")]
-    [Index(nameof(NomeCidade), nameof(Estado))]
+    [Microsoft.EntityFrameworkCore.Index(nameof(NomeCidade), nameof(Estado))]
     public class CidadeModel
     {
         [Key]
